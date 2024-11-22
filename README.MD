@@ -49,7 +49,7 @@ pip install pandas jinja2 openpyxl
 
 ```bash
 python main.py
-
+```
 
 
 После этого откройте INDEX.HTML c помощью веб-браузер и перейдите по адресу [http://localhost:8000](http://localhost:8000), чтобы увидеть вашу коллекцию вин.
