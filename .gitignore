@@ -1,6 +1,5 @@
 *__pycache__*
 venv/
-venv
 *.sqlite3
 *.swp
 static/
@@ -12,6 +11,6 @@ htmlcov/
 *.mo
 *.pot
 .tox
-venv/
+
 
 
