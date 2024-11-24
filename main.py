@@ -47,18 +47,17 @@ def main():
         sheet_name='wine_al',
         usecols=['Категория', 'Название', 'Сорт', 'Цена', 'Картинка', 'Акция']
     )
-    vine_list = excel_data_df.to_dict(orient='records')
+    vine_category = excel_data_df.to_dict(orient='records')
 
-    vine_dict = defaultdict(list)
+    vine_product = defaultdict(list)
 
-    for item in vine_list:
+    for item in vine_category:
         item = {key: (value if pd.notna(value) else '') for key, value in item.items()}
         item['Картинка'] = os.path.join(IMAGE_FOLDER, item['Картинка'])
         category = item['Категория']
-        vine_dict[category].append(item)
+        vine_product[category].append(item)
 
     start_year = 1920
-    # Используем новую функцию для получения разницы в годах и окончания
     years_difference, ending_year = get_years_info(start_year)
 
     env = Environment(
@@ -69,7 +68,7 @@ def main():
     template = env.get_template('template.html')
     rendered_page = template.render(
         text2=(f"Уже {years_difference} {ending_year} с вами"),
-        product_dict=product_dict
+        vine_product_forhtml=vine_product
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
