@@ -35,8 +35,6 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description='Веб-приложение для коллекции вин.')
     parser.add_argument('--data', type=str, default=os.getenv('DATA_FILE', 'wine.xlsx'),
                         help='Путь к файлу с данными (по умолчанию: wine.xlsx)')
-    parser.add_argument('--config', type=str, default=os.getenv('CONFIG_FILE', 'config.json'),
-                        help='Путь к конфигурационному файлу (по умолчанию: config.json)')
     return parser.parse_args()
 
 def main():
@@ -51,11 +49,11 @@ def main():
 
     vine_product = defaultdict(list)
 
-    for item in vine_category:
-        item = {key: (value if pd.notna(value) else '') for key, value in item.items()}
-        item['Картинка'] = os.path.join(IMAGE_FOLDER, item['Картинка'])
-        category = item['Категория']
-        vine_product[category].append(item)
+    for alcoholic_drink in vine_category:
+        alcoholic_drink = {key: (value if pd.notna(value) else '') for key, value in alcoholic_drink.items()}
+        alcoholic_drink['Картинка'] = os.path.join(IMAGE_FOLDER, alcoholic_drink['Картинка'])
+        category = alcoholic_drink['Категория']
+        vine_product[category].append(alcoholic_drink)
 
     start_year = 1920
     years_difference, ending_year = get_years_info(start_year)
