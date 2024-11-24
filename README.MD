@@ -10,7 +10,7 @@
 1. **Клонируйте репозиторий на свой компьютер:**
 
 ```bash
-git clone https://github.com/ваш_логин/wine-collection.git
+git clone https://github.com/karaman56/WINE_MY
 ```
 
 2. **Открыть новую консоль/терминал.**
