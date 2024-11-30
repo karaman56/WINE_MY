@@ -45,15 +45,14 @@ def main():
         sheet_name='wine_al',
         usecols=['Категория', 'Название', 'Сорт', 'Цена', 'Картинка', 'Акция']
     )
-    vine_category = excel_data_df.to_dict(orient='records')
+    alcohol_categories = excel_data_df.to_dict(orient='records')
+    alcohol_products = defaultdict(list)
 
-    vine_product = defaultdict(list)
-
-    for alcoholic_drink in vine_category:
+    for alcoholic_drink in alcohol_categories:
         alcoholic_drink = {key: (value if pd.notna(value) else '') for key, value in alcoholic_drink.items()}
         alcoholic_drink['Картинка'] = os.path.join(IMAGE_FOLDER, alcoholic_drink['Картинка'])
         category = alcoholic_drink['Категория']
-        vine_product[category].append(alcoholic_drink)
+        alcohol_products[category].append(alcoholic_drink)
 
     start_year = 1920
     years_difference, ending_year = get_years_info(start_year)
@@ -66,7 +65,7 @@ def main():
     template = env.get_template('template.html')
     rendered_page = template.render(
         text2=(f"Уже {years_difference} {ending_year} с вами"),
-        vine_product_forhtml=vine_product
+        products =alcohol_products
     )
 
     with open('index.html', 'w', encoding="utf8") as file:

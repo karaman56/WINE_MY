@@ -44,7 +44,7 @@ bash pip install -r requirements.txt
 ```
 
 Содержимое `requirements.txt` должно быть следующим:
-- DateTime==5.5 
+
 - Jinja2==3.1.4 
 - openpyxl==3.1.5 
 - pandas==2.2.3
@@ -73,9 +73,9 @@ bash python main.py
 ## Проверка результата
 
 После запуска приложения, откройте браузер и перейдите по адресу:
-```
-http://localhost:8000 
-```
+
+[http://localhost:8000](http://localhost:8000)
+
 
 
 ## Структура проекта
